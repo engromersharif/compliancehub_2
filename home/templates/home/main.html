@@ -1,0 +1,22 @@
+{% extends "base_menu.html" %} {% block content %}
+
+<ul>
+  {% if user.is_authenticated %}
+  <li>
+    <p><a href="{% url 'jhpl_ims:index' %}">JHPL IMS</a></p>
+  </li>
+  <li>
+    <p><a href="">AJCL IMS</a></p>
+  </li>
+
+  {% else %}
+  <li>
+    <p>
+      <a href="{% url 'login' %}"
+        >You are signed out. Please click here to access the content.</a
+      >
+    </p>
+  </li>
+  {% endif %}
+</ul>
+{% endblock %}
