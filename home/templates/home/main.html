@@ -1,5 +1,5 @@
-{% extends "base_menu.html" %} {% block content %}
-
+{% extends "base_menu.html" %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}" />
 <ul>
   {% if user.is_authenticated %}
   <li>
@@ -8,15 +8,15 @@
   <li>
     <p><a href="">AJCL IMS</a></p>
   </li>
-
-  {% else %}
+  <img src="{% static "images/main_photo.jpg" %}" alt="" class="center_main_photo">
   <li>
+    {% else %}
     <p>
       <a href="{% url 'login' %}"
         >You are signed out. Please click here to access the content.</a
       >
     </p>
   </li>
-  {% endif %}
 </ul>
-{% endblock %}
+<img src="{% static "images/secondary_photo.jpg" %}" alt=""
+class="center_secondary_photo"> {% endif %} {% endblock %}

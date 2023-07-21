@@ -1,4 +1,5 @@
 {% extends "base_bootstrap.html" %} {% block navbar %}
+{% load static %}
 <nav class="navbar navbar-default navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -12,7 +13,9 @@
         <a href="#" data-toggle="dropdown" class="dropdown-toggle"> </a>
         <ul class="dropdown-menu"></ul>
       </li>
-      {% else %} {% endif %}
+      {% else %}
+      <li><a href="{% url 'login' %}">Log In</a></li>
+      {% endif %}
     </ul>
   </div>
 </nav>
