@@ -1,0 +1,13 @@
+{% extends "base_menu.html" %} {% block content %}
+
+<!DOCTYPE html>
+
+<h2>Welcome to J-Holdings IMS</h2>
+
+<h3><a href="{% url 'jhpl_ims:sop_one' %}">SOP 1</a></h3>
+<h3><a href="{% url 'jhpl_ims:sop_two' %}">SOP 2</a></h3>
+<h3><a href="{% url 'jhpl_ims:sop_three' %}">SOP 3</a></h3>
+<h3><a href="{% url 'jhpl_ims:sop_four' %}">SOP 4</a></h3>
+<h3><a href="{% url 'jhpl_ims:sop_five' %}">SOP 5</a></h3>
+
+{% endblock %}
