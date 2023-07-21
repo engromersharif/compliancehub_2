@@ -1,9 +1,0 @@
-env/
-*.pyc
-__pycache__/
-db.sqlite3
-.env
-*.log
-*.pot
-*.py[co]
-*$py.class
