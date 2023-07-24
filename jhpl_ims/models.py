@@ -11,6 +11,7 @@ class doc_controller(models.Model):
     def __str__(self):
         return self.name
 
+
 class jhpl_ims_masterlist(models.Model):
     ims_masterlist_id = models.AutoField(primary_key=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

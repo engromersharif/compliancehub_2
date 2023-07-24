@@ -59,12 +59,13 @@
 <p><a href="{% url 'jhpl_ims:index' %}">Go Back</a></p>
 
 {% if user.is_authenticated %}
+<p id="back"> You are logged in as <b>{{user.username}} </b>
 <br clear="all"/>
 <form method="post" action="{% url 'jhpl_ims:comment_create' master.ims_masterlist_id %}">
     {% csrf_token %}
     {{ comment_form|crispy }}
 <input type="submit" value="Submit">
-<input type="submit" value="Cancel" onclick="window.location.href='{% url 'jhpl_ims:index' %}';return false;">
+<input type="submit" value="Cancel" onclick="window.location.href='{% url 'jhpl_ims:procedures' master.ims_masterlist_id %}';return false;">
 </form>
 </p>
 {% endif %}
@@ -79,8 +80,8 @@
 {% if user == comment.owner %}
 <a href="{% url 'jhpl_ims:comment_delete' comment.notes_id %}"><i class="fa fa-trash"></i></a>
 </p>
-<hr />
 {% endif %}
+<hr />
 {% endfor %}
 {% endif %}
 </p>
