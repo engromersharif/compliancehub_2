@@ -26,7 +26,8 @@
   }
 </style>
 
-{% if master_list %} {% for master in master_list %}
+{% if master_list %}
+{% for master in master_list %}
 <header class="header">
   <div class="header-item">
     <p><b>Document Number:</b> {{master.doc_num}} <span id="docNo"></span></p>
@@ -55,15 +56,42 @@
 
   <p id="docContent"></p>
 </main>
-{% endfor %} {% endif %}
+
 
 <p><a href="{% url 'jhpl_ims:index' %}">Go Back</a></p>
 
-<p><b>Notes: </b></p>
-<hr />
-{% if notes_list%} {% for comment in notes_list %}
-<p><b>Owner:</b>{{comment.owner}}</p>
-<p><b>Comments:</b>{{comment.large_text_body}}</p>
-<p><b>---</b></p>
+{% if user.is_authenticated %}
+<br clear="all"/>
+<form method="post" action="{% url 'jhpl_ims:comment_create' master.ims_masterlist_id %}">
+    {% csrf_token %}
+    {{ comment_form|crispy }}
+<input type="submit" value="Submit">
+<input type="submit" value="Cancel" onclick="window.location.href='{% url 'jhpl_ims:index' %}';return false;">
+</form>
+</p>
+{% endif %}
 
-{% endfor %} {% endif %} {% endblock %}
+
+<h4><b>Notes: </b></h4>
+<hr />
+{% if notes_list%}
+{% for comment in notes_list %}
+<p><b>Owner: </b>{{comment.owner}}</p>
+<p><b>Comments: </b>{{comment.large_text_body}}
+{% if user == comment.owner %}
+<a href="{% url 'jhpl_ims:comment_delete' comment.notes_id %}"><i class="fa fa-trash"></i></a>
+</p>
+<hr />
+{% endif %}
+{% endfor %}
+{% endif %}
+</p>
+
+
+
+{% endfor %}
+{% endif %}
+
+
+
+{% endblock %}

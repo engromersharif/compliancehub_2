@@ -34,8 +34,8 @@
   onkeyup="filterFunction()"
   placeholder="Search by title..."
 />
-<p id="back">
-  <a href="/"> Go Back </a> | Click on <b>Document Number</b> To Visit Procedure
+<p id="back"> You are logged in as <b>{{user.username}} </b> |
+  <a href="/"> Click Here To Go Back </a> | Click on <b>Document Number</b> To Visit Procedure
 </p>
 <table id="documentTable">
   <thead>
@@ -50,7 +50,11 @@
       <th>Reviewed By</th>
       <th>Review Date</th>
       <th>Controlled Copy Number</th>
-      <th></th>
+
+      {% if show_edit_link %}
+      <th>Admin Area</th>
+      {% endif %}
+
     </tr>
   </thead>
   <tbody>
@@ -71,12 +75,15 @@
       <td>{{master.reviewed_by}}</td>
       <td>{{master.reviewed_date}}</td>
       <td>{{master.control_copy_num}}</td>
+
+      {% if show_edit_link %}
       <td>
         <a
           href="{% url 'jhpl_ims:jhplmaster_update' master.ims_masterlist_id %}"
           >Edit</a
         >
       </td>
+      {% endif %}
     </tr>
     {% endfor %} {% endif %}
   </tbody>
