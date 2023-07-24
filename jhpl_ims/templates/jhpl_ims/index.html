@@ -1,13 +1,106 @@
 {% extends "base_menu.html" %} {% block content %}
 
-<!DOCTYPE html>
+<title>Master List of Documents</title>
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
 
-<h2>Welcome to J-Holdings IMS</h2>
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
 
-<h3><a href="{% url 'jhpl_ims:sop_one' %}">SOP 1</a></h3>
-<h3><a href="{% url 'jhpl_ims:sop_two' %}">SOP 2</a></h3>
-<h3><a href="{% url 'jhpl_ims:sop_three' %}">SOP 3</a></h3>
-<h3><a href="{% url 'jhpl_ims:sop_four' %}">SOP 4</a></h3>
-<h3><a href="{% url 'jhpl_ims:sop_five' %}">SOP 5</a></h3>
+  th {
+    background-color: #f2f2f2;
+    color: black;
+  }
+
+  input {
+    margin-bottom: 10px;
+  }
+
+  back {
+  }
+</style>
+
+<h1>Master List of Documents</h1>
+
+<input
+  type="text"
+  id="searchInput"
+  onkeyup="filterFunction()"
+  placeholder="Search by title..."
+/>
+<p id="back">
+  <a href="/"> Go Back </a> | Click on <b>Document Number</b> To Visit Procedure
+</p>
+<table id="documentTable">
+  <thead>
+    <tr>
+      <th>Document Number</th>
+      <th>Document Title</th>
+      <th>Revision Number</th>
+      <th>Issue Date</th>
+      <th>Current Status</th>
+      <th>Approved By</th>
+      <th>Approval Date</th>
+      <th>Reviewed By</th>
+      <th>Review Date</th>
+      <th>Controlled Copy Number</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Sample row: you will need to add more rows and data -->
+    {% if master_list %} {% for master in master_list %}
+    <tr>
+      <td>
+        <a href="{% url 'jhpl_ims:procedures' master.ims_masterlist_id %}"
+          >{{master.doc_num}}</a
+        >
+      </td>
+      <td>{{master.doc_title}}</td>
+      <td>{{master.rev_num}}</td>
+      <td>{{master.issue_date}}</td>
+      <td>{{master.status}}</td>
+      <td>{{master.approved_by}}</td>
+      <td>{{master.approved_date}}</td>
+      <td>{{master.reviewed_by}}</td>
+      <td>{{master.reviewed_date}}</td>
+      <td>{{master.control_copy_num}}</td>
+      <td>
+        <a
+          href="{% url 'jhpl_ims:jhplmaster_update' master.ims_masterlist_id %}"
+          >Edit</a
+        >
+      </td>
+    </tr>
+    {% endfor %} {% endif %}
+  </tbody>
+</table>
+
+<script>
+  function filterFunction() {
+    let input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("documentTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[1]; // Change index as needed
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
 
 {% endblock %}

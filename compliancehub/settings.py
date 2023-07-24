@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -44,13 +45,19 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # Extensions - installed with pip3 / requirements.txt
-    'django_extensions',
-    'crispy_forms',
-    'rest_framework',
-    'social_django',
-    'taggit',
+    "django_extensions",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "rest_framework",
+    "social_django",
+    "taggit",
 
 ]
+
+# When we get to crispy forms :)
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -76,6 +83,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+
             ],
         },
     },
