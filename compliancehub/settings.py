@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "whitenoise.runserver_nostatic",  # new
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
 
     # Extensions - installed with pip3 / requirements.txt
     "django_extensions",

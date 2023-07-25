@@ -9,6 +9,7 @@ from jhpl_ims.owner import OwnerDeleteView
 # Create your views here.
 from . models import jhpl_ims_masterlist, notes
 from django.contrib.auth import get_user_model
+from django.contrib.humanize.templatetags.humanize import naturaltime
 
 
 class index(LoginRequiredMixin, View):
@@ -45,8 +46,7 @@ class procedures(LoginRequiredMixin, View):
 
 class MasterUpdateView(UpdateView):
     model = jhpl_ims_masterlist
-    fields = ['doc_num', 'doc_title', 'rev_num', 'issue_date', 'status']
-    # This would make more sense
+    fields = ['doc_num', 'doc_title', 'rev_num', 'issue_date', 'status','approved_by','approved_date','reviewed_by','reviewed_date','control_copy_num']
     fields_exclude = ['ims_masterlist_id', 'owner', 'created_at', 'updated_at']
 
 

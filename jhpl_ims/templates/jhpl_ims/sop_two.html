@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-{% extends "base_menu.html" %} {% load crispy_forms_tags %} {% block content %}
+{% extends "base_menu.html" %} {% load crispy_forms_tags %} 
+{% load humanize %}
+{% block content %}
 
 <style>
   .header {
@@ -76,7 +78,7 @@
 <hr />
 {% if notes_list%}
 {% for comment in notes_list %}
-<p><b>Owner: </b>{{comment.owner}}</p>
+<p><b>Owner: </b>{{comment.owner}} | {{comment.updated_at|naturaltime}}</p>
 <p><b>Comments: </b>{{comment.large_text_body}}
 {% if user == comment.owner %}
 <a href="{% url 'jhpl_ims:comment_delete' comment.notes_id %}"><i class="fa fa-trash"></i></a>
