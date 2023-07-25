@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     # Extensions - installed with pip3 / requirements.txt
     "django_extensions",
+    "tempus_dominus",
     "crispy_forms",
     "crispy_bootstrap5",
     "rest_framework",
@@ -56,9 +57,9 @@ INSTALLED_APPS = [
 ]
 
 # When we get to crispy forms :)
-
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
