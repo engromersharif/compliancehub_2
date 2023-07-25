@@ -6,7 +6,7 @@
 />
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
 
-<h2>Master List Form | Welcome <b>{{user.username}}</b></h2>
+<h2>Master List Form | Welcome <b>{{user.username}},</b></h2>
 <form action="" method="post" class="form-select">
   {% csrf_token %} {{ form|crispy }}
   <input type="submit" value="Submit" class="btn btn-primary" />

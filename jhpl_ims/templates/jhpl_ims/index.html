@@ -45,10 +45,10 @@
       <th>Revision Number</th>
       <th>Issue Date</th>
       <th>Current Status</th>
-      <th>Approved By</th>
-      <th>Approval Date</th>
       <th>Reviewed By</th>
       <th>Review Date</th>
+      <th>Approved By</th>
+      <th>Approval Date</th>
       <th>Controlled Copy Number</th>
 
       {% if show_edit_link %}
@@ -70,10 +70,11 @@
       <td>{{master.rev_num}}</td>
       <td>{{master.issue_date}}</td>
       <td>{{master.status}}</td>
-      <td>{{master.approved_by}}</td>
-      <td>{{master.approved_date}}</td>
       <td>{{master.reviewed_by}}</td>
       <td>{{master.reviewed_date}}</td>
+      <td>{{master.approved_by}}</td>
+      <td>{{master.approved_date}}</td>
+
       <td>{{master.control_copy_num}}</td>
 
       {% if show_edit_link %}

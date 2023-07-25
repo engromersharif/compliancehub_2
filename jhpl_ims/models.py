@@ -16,19 +16,20 @@ class jhpl_ims_masterlist(models.Model):
     STATUS_SELECT = [
         ("Active", "Active"),
         ("Obsolete", "Obsolete"),
+        ("InProcess", "InProcess"),
         ]
     ims_masterlist_id = models.AutoField(primary_key=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     doc_num = models.CharField(max_length=200, null = False, blank= False)
     doc_title = models.CharField(max_length=200, null=True, blank=True)
     rev_num = models.DecimalField(max_digits=7, decimal_places=2, null=True)
-    issue_date = models.DateTimeField()
-    status = models.CharField(max_length=8, choices=STATUS_SELECT)
-    approved_by = models.ForeignKey("doc_controller", on_delete=models.CASCADE, related_name="jhpl_approved_by")
-    approved_date = models.DateTimeField()
-    reviewed_by = models.ForeignKey("doc_controller", on_delete=models.CASCADE, related_name="jhpl_reviewed_by")
-    reviewed_date = models.DateTimeField()
-    control_copy_num = models.IntegerField()
+    issue_date = models.DateField(null=True, blank=True)
+    status = models.CharField(max_length=9, choices=STATUS_SELECT)
+    reviewed_by = models.ForeignKey("doc_controller", on_delete=models.CASCADE, related_name="jhpl_reviewed_by",null= True,blank = True)
+    reviewed_date = models.DateField(null=True, blank=True)
+    approved_by = models.ForeignKey("doc_controller", on_delete=models.CASCADE, related_name="jhpl_approved_by",null= True,blank= True)
+    approved_date = models.DateField(null=True, blank=True)
+    control_copy_num = models.IntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
 
